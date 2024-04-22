@@ -4,10 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "USER")
+@Table(name = "MEMBER")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @ToString
 public class User {
 
@@ -21,4 +20,10 @@ public class User {
     @Column(name = "usernm")
     private String usernm;
 
+    @Builder
+    public User(String userid, String password, String usernm) {
+        this.userid = userid;
+        this.password = password;
+        this.usernm = usernm;
+    }
 }

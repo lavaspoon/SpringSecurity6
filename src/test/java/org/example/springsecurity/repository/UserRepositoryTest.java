@@ -32,7 +32,7 @@ class UserRepositoryTest {
         //given
         User user = User.builder()
                 .userid("lava")
-                .password("1234")
+                .password(encoder.encode("1234"))
                 .usernm("lee")
                 .build();
 

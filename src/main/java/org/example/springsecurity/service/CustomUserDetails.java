@@ -1,33 +1,39 @@
-package org.example.springsecurity.dto;
+package org.example.springsecurity.service;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.example.springsecurity.domain.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class UserDto implements UserDetails {
+public class CustomUserDetails implements UserDetails {
 
-    private String userid;
+    private final User user;
 
-    private String password;
-
-    private String usernm;
-
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public CustomUserDetails(User user) {
+        this.user = user;
     }
 
     @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return user.getAuthorities().stream()
+                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
     public String getUsername() {
-        return usernm;
+        return user.getUsernm();
+    }
+
+    @Override
+    public String getPassword() {
+        return user.getPassword();
     }
 
     @Override

@@ -31,11 +31,6 @@ public class SecurityConfig {
     }
 
     @Bean
-    public PasswordEncoder bCryptPasswordEncoder () {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
     public AuthenticationProvider customAuthenticationProvider() {
         return new CustomAuthenticationProvider(customUserDetailsService, bCryptPasswordEncoder());
     }

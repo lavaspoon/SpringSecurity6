@@ -2,6 +2,10 @@ package org.example.springsecurity.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.springsecurity.enumeration.EncryptionAlgolithm;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "MEMBER")
@@ -19,6 +23,12 @@ public class User {
 
     @Column(name = "usernm")
     private String usernm;
+
+    @Enumerated(EnumType.STRING)
+    private EncryptionAlgolithm algolithm;
+
+    @OneToMany(mappedBy = "user")
+    private List<Authority> authorities = new ArrayList<>();
 
     @Builder
     public User(String userid, String password, String usernm) {

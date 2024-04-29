@@ -19,7 +19,7 @@ public class CustomUserDetailService implements UserDetailsService {
     private final ModelMapper modelMapper;
 
     @Override
-    public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
+    public CustomUserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
         User user = userRepository.findById(userid).orElseThrow(() -> new UsernameNotFoundException("사용자 계정이 없습니다."));
         CustomUserDetails userDetails = modelMapper.map(user, CustomUserDetails.class);
         return userDetails;

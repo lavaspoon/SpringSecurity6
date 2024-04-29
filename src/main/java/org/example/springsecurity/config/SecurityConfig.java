@@ -20,6 +20,8 @@ public class SecurityConfig {
 
     private final UserDetailsService customUserDetailsService;
 
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable())
@@ -32,7 +34,7 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationProvider customAuthenticationProvider() {
-        return new CustomAuthenticationProvider(customUserDetailsService, bCryptPasswordEncoder());
+        return new CustomAuthenticationProvider(customUserDetailsService, bCryptPasswordEncoder);
     }
 
 }

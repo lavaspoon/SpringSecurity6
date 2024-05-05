@@ -3,7 +3,6 @@ package org.example.springsecurity.service;
 import lombok.RequiredArgsConstructor;
 import org.example.springsecurity.domain.User;
 import org.example.springsecurity.repository.UserRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
